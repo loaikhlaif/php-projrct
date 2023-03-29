@@ -7,6 +7,7 @@ if (!isset($_SESSION['username'])) {
 }
 $conn = mysqli_connect('localhost', 'root', '', 'user');
 $username = $_SESSION['username'];
+$user = $_SESSION['user'];
 $stmt = mysqli_prepare($conn, 'SELECT * FROM users WHERE username = ?');
 mysqli_stmt_bind_param($stmt, 's', $username);
 mysqli_stmt_execute($stmt);

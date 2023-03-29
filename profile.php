@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once 'helper.php';
+
 if(isset($_SESSION['username'])) {
     $conn = new mysqli('localhost', 'root', '', 'user');
 
@@ -26,7 +28,7 @@ if(isset($_SESSION['username'])) {
         echo '<tr>';
         echo '<tr>';
         echo '<td><strong>Username:</strong></td>';
-        echo '<td>' . (isset($row["username"]) ? $row["username"] : '') . '</td>';
+        echo '<td>' . (getUser()->getUsername()) . '</td>';
         echo '</tr>';
         echo '<tr>';
         echo '<td><strong>Date of Birth:</strong></td>';

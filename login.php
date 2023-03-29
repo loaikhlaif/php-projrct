@@ -1,7 +1,9 @@
 <?php
 
-session_start();
+require_once('helper.php');
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    session_start();
     $username = $_POST['username'];
     $password = $_POST['password'];
     $conn = mysqli_connect('localhost', 'root', '', 'user');
@@ -21,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $hashed_password = $row['password'];
         if (password_verify($password, $hashed_password)) {
             $_SESSION['username'] = $row['username'];
-            $_SESSION['password'] = $row['password'];
+            setUser($row);
             header('Location: profile.php');
         } else {
             $_SESSION['error'] = 'Invalid username or password.';
